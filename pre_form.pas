@@ -14,7 +14,6 @@ type
     Button3: TButton;
     ComboBox1: TComboBox;
     Label1: TLabel;
-    procedure BitBtn2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -34,11 +33,6 @@ implementation
 {$R *.dfm}
 
 uses login_form;
-
-procedure TPreForm.BitBtn2Click(Sender: TObject);
-begin
-  Application.Terminate;
-end;
 
 procedure TPreForm.Button1Click(Sender: TObject);
 begin
