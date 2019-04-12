@@ -20,7 +20,6 @@ type TResolver = class
     function ask_create_problem(title, describe: string; status: integer):integer;
     function download_chat(problem_id: integer): boolean;
     function get_id_problem_by_title(title: String): integer;
-    function get_name_by_id(id: integer): String;
 
 end;
 
@@ -103,12 +102,6 @@ Result := 0;
   for i:= 0 to self.problems.Count - 1 do
     if self.problems[i].title = title then
       Result := self.problems[i].id;
-end;
-
-function TResolver.get_name_by_id(id: Integer): String;
-begin
-
-
 end;
 
 end.
