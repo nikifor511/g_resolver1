@@ -106,9 +106,8 @@ Result := 0;
 end;
 
 function TResolver.get_name_by_id(id: Integer): String;
-var s: String;
 begin
- s:= 'll';
+
 
 end;
 
