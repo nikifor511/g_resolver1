@@ -74,6 +74,7 @@ object ResolverForm: TResolverForm
     Caption = 'Create Problem'
     TabOrder = 2
     OnClick = Button1Click
+    ExplicitLeft = 783
   end
   object Button2: TButton
     Left = 805
