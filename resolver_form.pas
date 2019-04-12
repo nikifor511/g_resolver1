@@ -66,7 +66,7 @@ procedure TResolverForm.ListBox1DblClick(Sender: TObject);
 var chat_file: TextFile;
     id_problem: integer;
     chat_str: String;
-    date, time, id_sender, text, img_link: String;
+    date, time, sender_name, text, img_link: String;
 begin
   id_problem := pre_form.my_resolver.get_id_problem_by_title(ListBox1.Items[ListBox1.ItemIndex]);
   pre_form.my_resolver.download_chat(id_problem);
@@ -80,9 +80,11 @@ begin
     delete(chat_str, 1, pos('|', chat_str));
     time := copy(chat_str, 1, pos('|', chat_str) - 1);
     delete(chat_str, 1, pos('|', chat_str));
-
-
-
+    sender_name := pre_form.my_resolver.get_name_by_id( StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
+    delete(chat_str, 1, pos('|', chat_str));
+    text := copy(chat_str, 1, pos('|', chat_str) - 1);
+    delete(chat_str, 1, pos('|', chat_str));
+    img_link := chat_str;
 
     JvRichEdit1.AddFormatText(chat_str + #13);
   end;
