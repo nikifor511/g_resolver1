@@ -1,0 +1,51 @@
+unit resolver_form;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
+  JvExStdCtrls, JvRichEdit;
+
+type
+  TResolverForm = class(TForm)
+    ListBox1: TListBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    JvRichEdit1: TJvRichEdit;
+    Button1: TButton;
+    Label3: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ResolverForm: TResolverForm;
+
+implementation
+
+{$R *.dfm}
+
+uses pre_form, create_problem_form;
+
+procedure TResolverForm.Button1Click(Sender: TObject);
+begin
+  create_problem_form.CreateProblemForm.ShowModal;
+end;
+
+procedure TResolverForm.FormShow(Sender: TObject);
+var i:integer;
+begin
+    Label1.Caption := IntToStr(pre_form.my_resolver.get_list_problems);
+    for i := 0 to pre_form.my_resolver.problems.Count - 1 do
+      ListBox1.Items.Add(pre_form.my_resolver.problems[i].title);
+
+
+
+end;
+
+end.

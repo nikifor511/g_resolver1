@@ -1,0 +1,39 @@
+unit resolver_form;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TResolverForm = class(TForm)
+    ListBox1: TListBox;
+    Button1: TButton;
+    Label1: TLabel;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ResolverForm: TResolverForm;
+
+implementation
+
+{$R *.dfm}
+
+uses pre_form;
+
+procedure TResolverForm.FormShow(Sender: TObject);
+begin
+    Label1.Caption := IntToStr(pre_form.my_resolver.list_problems);
+    for Value in pre_form.my_resolver.problem_dictionary.Values do
+    writeln(Value);
+
+
+end;
+
+end.

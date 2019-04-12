@@ -1,0 +1,77 @@
+unit resolver;
+
+interface
+
+uses IdHTTP, SysUtils, System.Generics.Collections, Classes,  Winapi.Windows, problem;
+
+type TResolver = class
+  private
+    myIdHTTP: TIdHTTP;
+  public
+    IsLogin: boolean;
+    problems: TList<TProblem>;
+
+    FIO: String;
+    constructor Create;
+    destructor Destroy;
+    function ask_login(fio, pass: String): integer;
+    function get_list_problems: integer;
+    function ask_create_problem(title, describe: string; status: integer):integer;
+
+end;
+
+implementation
+
+constructor TResolver.Create;
+begin
+  myIdHTTP := TIdHTTP.Create;
+  problems := TList<TProblem>.Create;
+  self.IsLogin := false;
+end;
+
+destructor TResolver.Destroy;
+begin
+  myIdHTTP.Free;
+end;
+
+function TResolver.ask_login(fio, pass: String): integer;
+var resultHTTPGet: String;
+begin
+  resultHTTPGet := myIdHTTP.Get('http://resolver/?oper=__log&name=' + fio + '&pass=' + pass);
+  if resultHTTPGet = '0' then begin
+    self.IsLogin := true;
+    self.FIO := fio;
+  end;
+  Result := StrToInt(resultHTTPGet);
+end;
+
+function TResolver.get_list_problems: integer;
+var resultHTTPGet, res_value, title: String;
+    id :integer;
+    tmp_problem: TProblem;
+begin
+  resultHTTPGet := myIdHTTP.Get('http://resolver/?oper=___lo&name=' + self.FIO);
+  if resultHTTPGet <> '0' then begin
+    //resultHTTPGet := copy(resultHTTPGet, 1, Length(resultHTTPGet) - 1);
+    while pos('/', resultHTTPGet) > 0 do begin
+      res_value := copy(resultHTTPGet, 1, pos('/',resultHTTPGet) - 1);
+      id := StrToInt(copy(res_value, 1, pos('*', res_value) - 1));
+      title := copy(res_value, pos('*',res_value) + 1, Length(res_value) - pos('*', res_value));
+      tmp_problem := TProblem.Create(id, title);
+      problems.Add(tmp_problem);
+      //tmp_problem.Free;
+      delete(resultHTTPGet, 1, pos('/', resultHTTPGet));
+    end;
+    Result := 0;
+  end
+  else
+    Result := 1;
+end;
+
+function TResolver.ask_create_problem(title, describe: string; status: integer): integer;
+begin
+  Result := StrToInt(myIdHTTP.Get('http://resolver/?oper=___cp&name=' + self.FIO +
+    '&title=' + title + '&describe=' + describe + '&status=' + IntToStr(status)));
+end;
+
+end.

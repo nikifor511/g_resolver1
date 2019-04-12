@@ -1,0 +1,55 @@
+unit pre_form;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, resolver;
+
+type
+  TPreForm = class(TForm)
+    Button1: TButton;
+    RichEdit1: TRichEdit;
+    Button2: TButton;
+    Button3: TButton;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PreForm: TPreForm;
+  my_resolver: TResolver;
+
+implementation
+
+{$R *.dfm}
+
+uses login_form;
+
+procedure TPreForm.BitBtn2Click(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TPreForm.Button1Click(Sender: TObject);
+begin
+  LoginForm.ShowModal;
+end;
+
+procedure TPreForm.Button3Click(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TPreForm.FormCreate(Sender: TObject);
+begin
+  my_resolver := TResolver.Create;
+end;
+
+end.

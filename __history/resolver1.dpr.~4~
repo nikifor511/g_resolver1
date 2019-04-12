@@ -1,0 +1,20 @@
+program resolver1;
+
+uses
+  Vcl.Forms,
+  pre_form in 'pre_form.pas' {PreForm},
+  login_form in 'login_form.pas' {LoginForm},
+  resolver in 'resolver.pas',
+  resolver_form in 'resolver_form.pas' {ResolverForm},
+  problem in 'problem.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TPreForm, PreForm);
+  Application.CreateForm(TLoginForm, LoginForm);
+  Application.CreateForm(TResolverForm, ResolverForm);
+  Application.Run;
+end.
