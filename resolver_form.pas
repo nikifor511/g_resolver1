@@ -21,6 +21,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
+    procedure update_chat;
 
   private
 
@@ -62,7 +63,7 @@ begin
   self.upadate_problem_list;
 end;
 
-procedure TResolverForm.ListBox1DblClick(Sender: TObject);
+procedure TResolverForm.update_chat;
 var chat_file: TextFile;
     id_problem: integer;
     chat_str: String;
@@ -98,11 +99,12 @@ begin
     JvRichEdit1.SelAttributes.Style:=[fsBold];
     JvRichEdit1.SelText := text + #13;
     JvRichEdit1.SelLength := 0;
-
-//    JvRichEdit1.AddFormatText(date + ' ' + time + ' ' + sender_name + ' : ' + text + #13);
   end;
+end;
 
-
+procedure TResolverForm.ListBox1DblClick(Sender: TObject);
+begin
+  update_chat;
 end;
 
 end.
