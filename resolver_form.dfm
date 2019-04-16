@@ -62,9 +62,6 @@ object ResolverForm: TResolverForm
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    Lines.Strings = (
-      '1111111111111'
-      '2222222222222')
     ParentFont = False
     SelText = ''
     TabOrder = 1

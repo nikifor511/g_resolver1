@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.840,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.dfm=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver_form.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.342,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.dfm=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\login_form.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.637,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.909,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit2.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.600,=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.260,=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.772,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\global_variables.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.387,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.dfm=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\create_problem_form.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.944,=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\problem.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.387,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\create_problem_form.dfm=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.386,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\create_problem_form.pas=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.655,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\pre_form.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.655,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\pre_form.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.380,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.216,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.662,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.840,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver_form.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.342,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\login_form.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.655,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\pre_form.dfm=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.342,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\login_form.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.260,=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.576,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.662,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.600,=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.386,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\create_problem_form.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.840,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver_form.dfm=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.772,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\global_variables.pas=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.655,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\pre_form.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\problem.pas=C:\Users\Никита\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.380,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver1.dproj=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.637,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.840,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver_form.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.342,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\login_form.dfm=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.216,=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.909,C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\resolver.pas=C:\Users\nikifor\Documents\Embarcadero\Studio\Projects\g_resolver1\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

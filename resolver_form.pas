@@ -21,6 +21,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
+    procedure update_chat;
 
   private
 
@@ -62,7 +63,7 @@ begin
   self.upadate_problem_list;
 end;
 
-procedure TResolverForm.ListBox1DblClick(Sender: TObject);
+procedure TResolverForm.update_chat;
 var chat_file: TextFile;
     id_problem: integer;
     chat_str: String;
@@ -80,16 +81,30 @@ begin
     delete(chat_str, 1, pos('|', chat_str));
     time := copy(chat_str, 1, pos('|', chat_str) - 1);
     delete(chat_str, 1, pos('|', chat_str));
+    sender_name := pre_form.my_resolver.get_name_by_id(StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
     sender_name := pre_form.my_resolver.get_name_by_id( StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
     delete(chat_str, 1, pos('|', chat_str));
     text := copy(chat_str, 1, pos('|', chat_str) - 1);
     delete(chat_str, 1, pos('|', chat_str));
     img_link := chat_str;
 
-    JvRichEdit1.AddFormatText(chat_str + #13);
+    if sender_name = pre_form.my_resolver.FIO then
+      JvRichEdit1.Paragraph.Alignment := paRightJustify
+    else
+      JvRichEdit1.Paragraph.Alignment := paLeftJustify;
+
+    JvRichEdit1.SelAttributes.Style:=[];
+    JvRichEdit1.SelText := date + ' ' + time + ' [' + sender_name + '] : ';
+    JvRichEdit1.SelLength := 0;
+    JvRichEdit1.SelAttributes.Style:=[fsBold];
+    JvRichEdit1.SelText := text + #13;
+    JvRichEdit1.SelLength := 0;
   end;
+end;
 
-
+procedure TResolverForm.ListBox1DblClick(Sender: TObject);
+begin
+  update_chat;
 end;
 
 end.
