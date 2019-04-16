@@ -106,8 +106,14 @@ Result := 0;
 end;
 
 function TResolver.get_name_by_id(id: Integer): String;
+<<<<<<< HEAD
 begin
   Result := myIdHTTP.Get(TGlobalVariables.server_host + '?oper=___cp&name=');
+=======
+var s: String;
+begin
+ s:= 'll';
+>>>>>>> 44685acca1ce4f23f6f461c86942ea65b2954eba
 
 end;
 
