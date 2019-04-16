@@ -92,12 +92,14 @@ begin
     else
       JvRichEdit1.Paragraph.Alignment := paLeftJustify;
 
-    JvRichEdit1.SelStart := 2;
-    JvRichEdit1.SelLength := 9;
-    JvRichEdit1.SelAttributes.Color := clRed;
+    JvRichEdit1.SelAttributes.Style:=[];
+    JvRichEdit1.SelText := date + ' ' + time + ' [' + sender_name + '] : ';
+    JvRichEdit1.SelLength := 0;
+    JvRichEdit1.SelAttributes.Style:=[fsBold];
+    JvRichEdit1.SelText := text + #13;
+    JvRichEdit1.SelLength := 0;
 
-
-    JvRichEdit1.AddFormatText(date + ' ' + time + ' ' + sender_name + ' : ' + text + #13);
+//    JvRichEdit1.AddFormatText(date + ' ' + time + ' ' + sender_name + ' : ' + text + #13);
   end;
 
 
