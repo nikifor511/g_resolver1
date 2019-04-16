@@ -90,6 +90,7 @@ object ResolverForm: TResolverForm
     Top = 445
     Width = 679
     Height = 21
+    Anchors = [akLeft, akBottom]
     TabOrder = 4
   end
 end

@@ -1,6 +1,7 @@
 object PreForm: TPreForm
   Left = 0
   Top = 0
+  Anchors = [akLeft, akBottom]
   Caption = 'PreForm'
   ClientHeight = 281
   ClientWidth = 560

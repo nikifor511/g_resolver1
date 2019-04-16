@@ -3,11 +3,12 @@ unit resolver;
 interface
 
 uses IdHTTP, SysUtils, Vcl.Forms, System.Generics.Collections, Classes,  Winapi.Windows, problem,
-      global_variables;
+      global_variables, idFTP,Dialogs;
 
 type TResolver = class
   private
     myIdHTTP: TIdHTTP;
+    myIdFTP: TIdFTP;
   public
     IsLogin: boolean;
     problems: TList<TProblem>;
@@ -29,6 +30,12 @@ implementation
 constructor TResolver.Create;
 begin
   myIdHTTP := TIdHTTP.Create;
+  myIdFTP := TIdFTP.Create;
+  myIdFTP.Host := 'files.000webhost.com';
+  myIdFTP.Port := 21;
+  myIdFTP.Username := 'indolent-keyword';
+  myIdFTP.Password := 'student511';
+  myIdFTP.Passive := true;
   problems := TList<TProblem>.Create;
   self.IsLogin := false;
 end;
@@ -39,17 +46,47 @@ begin
 end;
 
 function TResolver.download_chat(problem_id: integer):boolean;
-var Stream:TMemoryStream;
+var FileList : TStringList;
+    i:integer;
+    str, str_from, str_to, f1, f2: String;
 begin
   try
-    Stream:=TMemoryStream.Create;
-    myIdHTTP.Get(TGlobalVariables.server_host + 'problem_chat/' + IntToStr(problem_id),Stream);
-    Stream.SaveToFile(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id));
-    Stream.Free;
+    myIdFtp.Connect;
+
+    str_from := '/public_html/problem_chat/';
+    str_to := ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id);
+
+    myIdFTP.ChangeDir(str_from);
+    myIdFTP.Get(str_from + IntToStr(problem_id), ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id), true);
+
+    myIdFTP.ChangeDir(str_from + IntToStr(problem_id) + '.media/');
+    FileList := TStringList.Create;
+    myIdFTP.List(FileList,'*.png', False);
+
+    if not DirectoryExists(str_to + '.media\') then
+      CreateDir(str_to + '.media\') ;
+
+    if FileList.Count > 0 then
+      for i := 0 to FileList.Count - 1 do begin
+        f1 := FileList.Strings[i];
+        f2 := str_to + '.media\' +FileList.Strings[i];
+
+        myIdFTP.Get(f1, f2, true);
+      end;
+
+    myIdFTP.Disconnect;
+
+//    Stream:=TMemoryStream.Create;
+//    myIdHTTP.Get(TGlobalVariables.server_host + 'problem_chat/' + IntToStr(problem_id),Stream);
+//    Stream.SaveToFile(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id));
+//    Stream.Free;
+
+
+
   except
     on e:Exception do
     begin
-      Stream.Free;
+
       Result := false;
     end;
   end;

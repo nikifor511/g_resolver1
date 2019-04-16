@@ -100,6 +100,7 @@ begin
     JvRichEdit1.SelText := text + #13;
     JvRichEdit1.SelLength := 0;
   end;
+  CloseFile(chat_file);
 end;
 
 procedure TResolverForm.ListBox1DblClick(Sender: TObject);
