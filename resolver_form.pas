@@ -91,6 +91,12 @@ begin
       JvRichEdit1.Paragraph.Alignment := paRightJustify
     else
       JvRichEdit1.Paragraph.Alignment := paLeftJustify;
+
+    JvRichEdit1.SelStart := 2;
+    JvRichEdit1.SelLength := 9;
+    JvRichEdit1.SelAttributes.Color := clRed;
+
+
     JvRichEdit1.AddFormatText(date + ' ' + time + ' ' + sender_name + ' : ' + text + #13);
   end;
 
