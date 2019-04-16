@@ -107,7 +107,7 @@ end;
 
 function TResolver.get_name_by_id(id: Integer): String;
 begin
-
+  Result := myIdHTTP.Get(TGlobalVariables.server_host + '?oper=_nbid&user_id=' + IntToStr(id));
 
 end;
 
