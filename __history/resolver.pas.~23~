@@ -3,7 +3,7 @@ unit resolver;
 interface
 
 uses IdHTTP, SysUtils, Vcl.Forms, System.Generics.Collections, Classes,  Winapi.Windows, problem,
-      global_variables, idFTP, IdFTPCommon;
+      global_variables, idFTP,Dialogs;
 
 type TResolver = class
   private
@@ -36,8 +36,6 @@ begin
   myIdFTP.Username := 'indolent-keyword';
   myIdFTP.Password := 'student511';
   myIdFTP.Passive := true;
-  myIdFTP.TransferType := ftBinary;
-
   problems := TList<TProblem>.Create;
   self.IsLogin := false;
 end;
@@ -45,7 +43,6 @@ end;
 destructor TResolver.Destroy;
 begin
   myIdHTTP.Free;
-  myIdFTP.Free;
 end;
 
 function TResolver.download_chat(problem_id: integer):boolean;
@@ -60,7 +57,7 @@ begin
     str_to := ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id);
 
     myIdFTP.ChangeDir(str_from);
-    myIdFTP.Get(IntToStr(problem_id), ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id), true);
+    myIdFTP.Get(str_from + IntToStr(problem_id), ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id), true);
 
     myIdFTP.ChangeDir(str_from + IntToStr(problem_id) + '.media/');
     FileList := TStringList.Create;
@@ -78,6 +75,13 @@ begin
       end;
 
     myIdFTP.Disconnect;
+
+//    Stream:=TMemoryStream.Create;
+//    myIdHTTP.Get(TGlobalVariables.server_host + 'problem_chat/' + IntToStr(problem_id),Stream);
+//    Stream.SaveToFile(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id));
+//    Stream.Free;
+
+
 
   except
     on e:Exception do
