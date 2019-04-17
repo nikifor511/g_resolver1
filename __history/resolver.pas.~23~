@@ -43,7 +43,6 @@ end;
 destructor TResolver.Destroy;
 begin
   myIdHTTP.Free;
-  myIdFTP.Free;
 end;
 
 function TResolver.download_chat(problem_id: integer):boolean;
@@ -58,7 +57,7 @@ begin
     str_to := ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id);
 
     myIdFTP.ChangeDir(str_from);
-    myIdFTP.Get(IntToStr(problem_id), ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id), true);
+    myIdFTP.Get(str_from + IntToStr(problem_id), ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id), true);
 
     myIdFTP.ChangeDir(str_from + IntToStr(problem_id) + '.media/');
     FileList := TStringList.Create;
