@@ -59,7 +59,6 @@ object ResolverForm: TResolverForm
     Caption = 'Create Problem'
     TabOrder = 1
     OnClick = Button1Click
-    ExplicitLeft = 805
   end
   object Button2: TButton
     Left = 811
@@ -69,7 +68,6 @@ object ResolverForm: TResolverForm
     Anchors = [akRight, akBottom]
     Caption = 'Send'
     TabOrder = 2
-    ExplicitLeft = 805
   end
   object Edit1: TEdit
     Left = 120
@@ -79,18 +77,13 @@ object ResolverForm: TResolverForm
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 3
   end
-  object WebBrowser1: TWebBrowser
+  object Chromium1: TChromium
     Left = 120
     Top = 32
-    Width = 685
+    Width = 673
     Height = 401
     Anchors = [akLeft, akTop, akRight, akBottom]
+    DefaultUrl = 'about:blank'
     TabOrder = 4
-    ControlData = {
-      4C000000CC460000722900000000000000000000000000000000000000000000
-      000000004C000000000000000000000001000000E0D057007335CF11AE690800
-      2B2E126208000000000000004C0000000114020000000000C000000000000046
-      8000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000100000000000000000000000000000000000000}
   end
 end

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
-  JvExStdCtrls, JvRichEdit, Vcl.OleCtrls, SHDocVw;
+  JvExStdCtrls, JvRichEdit, Vcl.OleCtrls, SHDocVw, cefvcl;
 
 type
   TResolverForm = class(TForm)
@@ -16,7 +16,7 @@ type
     Label3: TLabel;
     Button2: TButton;
     Edit1: TEdit;
-    WebBrowser1: TWebBrowser;
+    Chromium1: TChromium;
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -72,7 +72,8 @@ var chat_file: TextFile;
 begin
   id_problem := pre_form.my_resolver.get_id_problem_by_title(ListBox1.Items[ListBox1.ItemIndex]);
   pre_form.my_resolver.make_html(id_problem);
-  WebBrowser1.Navigate(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');
+  //WebBrowser1.Navigate(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');
+  Chromium1.Load(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');
 
 
 
