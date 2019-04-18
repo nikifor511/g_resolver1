@@ -64,7 +64,7 @@ begin
 
     myIdFTP.ChangeDir(str_from + IntToStr(problem_id) + '.media/');
     FileList := TStringList.Create;
-    myIdFTP.List(FileList,'*.png', False);
+    myIdFTP.List(FileList,'*.bmp', False);
 
     if not DirectoryExists(str_to + '.media\') then
       CreateDir(str_to + '.media\') ;

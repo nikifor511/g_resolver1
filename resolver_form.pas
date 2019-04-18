@@ -68,6 +68,7 @@ var chat_file: TextFile;
     id_problem: integer;
     chat_str: String;
     date, time, sender_name, text, img_link: String;
+    Bitmap: TBitmap;
 begin
   id_problem := pre_form.my_resolver.get_id_problem_by_title(ListBox1.Items[ListBox1.ItemIndex]);
   pre_form.my_resolver.download_chat(id_problem);
@@ -93,14 +94,23 @@ begin
     else
       JvRichEdit1.Paragraph.Alignment := paLeftJustify;
 
+    if img_link <> '---' then begin
+      Bitmap := TBitmap.Create;
+      img_link := ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.media\' + img_link;
+      Bitmap.LoadFromFile(img_link);
+      JvRichEdit1.InsertGraphic(Bitmap, false);
+      Bitmap.Free;
+    end;
+
+    JvRichEdit1.AddFormatText(#13 + 'hellllo');
 
 
-    JvRichEdit1.SelAttributes.Style:=[];
-    JvRichEdit1.SelText := date + ' ' + time + ' [' + sender_name + '] : ';
-    JvRichEdit1.SelLength := 0;
-    JvRichEdit1.SelAttributes.Style:=[fsBold];
-    JvRichEdit1.SelText := text + #13;
-    JvRichEdit1.SelLength := 0;
+//    JvRichEdit1.SelAttributes.Style:=[];
+//    JvRichEdit1.SelText := date + ' ' + time + ' [' + sender_name + '] : ';
+//    JvRichEdit1.SelLength := 0;
+//    JvRichEdit1.SelAttributes.Style:=[fsBold];
+//    JvRichEdit1.SelText := text + #13;
+//    JvRichEdit1.SelLength := 0;
   end;
   CloseFile(chat_file);
 end;
