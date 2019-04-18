@@ -3,7 +3,7 @@ object ResolverForm: TResolverForm
   Top = 0
   Caption = 'ResolverForm'
   ClientHeight = 503
-  ClientWidth = 901
+  ClientWidth = 907
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object ResolverForm: TResolverForm
   OnActivate = FormActivate
   OnShow = FormShow
   DesignSize = (
-    901
+    907
     503)
   PixelsPerInch = 96
   TextHeight = 13
@@ -50,47 +50,47 @@ object ResolverForm: TResolverForm
     TabOrder = 0
     OnDblClick = ListBox1DblClick
   end
-  object JvRichEdit1: TJvRichEdit
-    Left = 120
-    Top = 32
-    Width = 679
-    Height = 401
-    Alignment = taRightJustify
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    Font.Charset = RUSSIAN_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    SelText = ''
-    TabOrder = 1
-  end
   object Button1: TButton
-    Left = 805
+    Left = 811
     Top = 30
     Width = 88
     Height = 25
     Anchors = [akTop, akRight]
     Caption = 'Create Problem'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = Button1Click
+    ExplicitLeft = 805
   end
   object Button2: TButton
-    Left = 805
+    Left = 811
     Top = 443
     Width = 88
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Send'
-    TabOrder = 3
+    TabOrder = 2
+    ExplicitLeft = 805
   end
   object Edit1: TEdit
     Left = 120
     Top = 445
     Width = 679
     Height = 21
-    Anchors = [akLeft, akBottom]
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 3
+  end
+  object WebBrowser1: TWebBrowser
+    Left = 120
+    Top = 32
+    Width = 685
+    Height = 401
+    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 4
+    ControlData = {
+      4C000000CC460000722900000000000000000000000000000000000000000000
+      000000004C000000000000000000000001000000E0D057007335CF11AE690800
+      2B2E126208000000000000004C0000000114020000000000C000000000000046
+      8000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000100000000000000000000000000000000000000}
   end
 end
