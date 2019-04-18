@@ -93,8 +93,6 @@ begin
     else
       JvRichEdit1.Paragraph.Alignment := paLeftJustify;
 
-
-
     JvRichEdit1.SelAttributes.Style:=[];
     JvRichEdit1.SelText := date + ' ' + time + ' [' + sender_name + '] : ';
     JvRichEdit1.SelLength := 0;
