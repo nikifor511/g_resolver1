@@ -101,10 +101,9 @@ begin
   Reset(chat_file);
   Rewrite(html_file);
   Writeln(html_file, '<style>');
-  Writeln(html_file, '  img { width:160px; transition:width 0.5s ease; }');
-  Writeln(html_file, '  #statya:hover img { width:1000px; }');
+  Writeln(html_file, '  img.big {cursor: pointer; max-width: 320px;}');
+  Writeln(html_file, '  img.big:hover {max-width: none;}');
   Writeln(html_file, '</style>');
-
 
   while not EOF(chat_file) do
   begin
@@ -125,13 +124,11 @@ begin
       style_str := '<p style="text-align: left;">';
 
     if img_link <> '---' then begin
-      Writeln(html_file, '<div id="statya">');
       img_link := IntToStr(problem_id) + '.media\' + img_link;
-      Writeln(html_file, style_str + '  <img src="' + img_link + '" width="160" height="120" alt=""></p>');
-      Writeln(html_file, '</div>');
+      Writeln(html_file, style_str + '<img class="big" src="' + img_link + '"></p>');
     end;
 
-    Writeln(html_file, style_str + text + '</p>');
+    Writeln(html_file, style_str + date + ' ' + time + ' ' + '[' + sender_name + ']:' + text + '</p>');
 
   end;
   CloseFile(chat_file);
