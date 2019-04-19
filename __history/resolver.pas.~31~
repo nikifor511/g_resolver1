@@ -1,0 +1,191 @@
+unit resolver;
+
+interface
+
+uses IdHTTP, SysUtils, Vcl.Forms, System.Generics.Collections, Classes,  Winapi.Windows, problem,
+      global_variables, idFTP, IdFTPCommon;
+
+type TResolver = class
+  private
+    myIdHTTP: TIdHTTP;
+    myIdFTP: TIdFTP;
+  public
+    IsLogin: boolean;
+    problems: TList<TProblem>;
+
+    FIO: String;
+    constructor Create;
+    destructor Destroy;
+    function ask_login(fio, pass: String): integer;
+    function get_list_problems: integer;
+    function ask_create_problem(title, describe: string; status: integer):integer;
+    function download_chat(problem_id: integer): boolean;
+    function get_id_problem_by_title(title: String): integer;
+    function get_name_by_id(id: integer): String;
+    procedure make_html(problem_id:integer);
+
+end;
+
+implementation
+
+constructor TResolver.Create;
+begin
+  myIdHTTP := TIdHTTP.Create;
+  myIdFTP := TIdFTP.Create;
+  myIdFTP.Host := 'files.000webhost.com';
+  myIdFTP.Port := 21;
+  myIdFTP.Username := 'indolent-keyword';
+  myIdFTP.Password := 'student511';
+  myIdFTP.Passive := true;
+  myIdFTP.TransferType := ftBinary;
+
+  problems := TList<TProblem>.Create;
+  self.IsLogin := false;
+end;
+
+destructor TResolver.Destroy;
+begin
+  myIdHTTP.Free;
+  myIdFTP.Free;
+end;
+
+function TResolver.download_chat(problem_id: integer):boolean;
+var FileList : TStringList;
+    i:integer;
+    str, str_from, str_to, f1, f2: String;
+begin
+  try
+    myIdFtp.Connect;
+
+    str_from := '/public_html/problem_chat/';
+    str_to := ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id);
+
+    myIdFTP.ChangeDir(str_from);
+    myIdFTP.Get(IntToStr(problem_id), ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id), true);
+
+    myIdFTP.ChangeDir(str_from + IntToStr(problem_id) + '.media/');
+    FileList := TStringList.Create;
+    myIdFTP.List(FileList,'*.png', False);
+
+    if not DirectoryExists(str_to + '.media\') then
+      CreateDir(str_to + '.media\') ;
+
+    if FileList.Count > 0 then
+      for i := 0 to FileList.Count - 1 do begin
+        f1 := FileList.Strings[i];
+        f2 := str_to + '.media\' +FileList.Strings[i];
+
+        myIdFTP.Get(f1, f2, true);
+      end;
+
+    myIdFTP.Disconnect;
+
+  except
+    on e:Exception do
+    begin
+      Result := false;
+    end;
+  end;
+  Result := true;
+end;
+
+procedure TResolver.make_html(problem_id: Integer);
+var chat_file, html_file: TextFile;
+    chat_str: String;
+    date, time, sender_name, text, img_link, style_str: String;
+    Bitmap: TBitmap;
+begin
+  download_chat(problem_id);
+  AssignFile(chat_file, ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id));
+  AssignFile(html_file, ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(problem_id) + '.html');
+  Reset(chat_file);
+  Rewrite(html_file);
+  Writeln(html_file, '<style>');
+  Writeln(html_file, '  img.big {cursor: pointer; max-width: 150px;}');
+  Writeln(html_file, '  img.big:hover {max-width: none;}');
+  Writeln(html_file, '</style>');
+
+  while not EOF(chat_file) do
+  begin
+    readln(chat_file, chat_str);
+    date := copy(chat_str, 1, pos('|', chat_str) - 1);
+    delete(chat_str, 1, pos('|', chat_str));
+    time := copy(chat_str, 1, pos('|', chat_str) - 1);
+    delete(chat_str, 1, pos('|', chat_str));
+    sender_name := get_name_by_id(StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
+    delete(chat_str, 1, pos('|', chat_str));
+    text := copy(chat_str, 1, pos('|', chat_str) - 1);
+    delete(chat_str, 1, pos('|', chat_str));
+    img_link := chat_str;
+
+    if sender_name = self.FIO then
+      style_str := '<p style="text-align: right;">'
+    else
+      style_str := '<p style="text-align: left;">';
+    if img_link <> '---' then begin
+      img_link := IntToStr(problem_id) + '.media\' + img_link;
+      Writeln(html_file, style_str + '<img class="big" src="' + img_link + '"/></p>');
+    end;
+    Writeln(html_file, style_str + text + '</p>');
+  end;
+  CloseFile(chat_file);
+  CloseFile(html_file);
+end;
+
+
+function TResolver.ask_login(fio, pass: String): integer;
+var resultHTTPGet: String;
+begin
+  resultHTTPGet := myIdHTTP.Get(TGlobalVariables.server_host + '?oper=__log&name=' + fio + '&pass=' + pass);
+  if resultHTTPGet = '0' then begin
+    self.IsLogin := true;
+    self.FIO := fio;
+  end;
+  Result := StrToInt(resultHTTPGet);
+end;
+
+function TResolver.get_list_problems: integer;
+var resultHTTPGet, res_value, title: String;
+    id :integer;
+    tmp_problem: TProblem;
+begin
+  resultHTTPGet := myIdHTTP.Get(TGlobalVariables.server_host + '?oper=___lo&name=' + self.FIO);
+  if resultHTTPGet <> '0' then begin
+    problems.Clear;
+    while pos('/', resultHTTPGet) > 0 do begin
+      res_value := copy(resultHTTPGet, 1, pos('/',resultHTTPGet) - 1);
+      id := StrToInt(copy(res_value, 1, pos('*', res_value) - 1));
+      title := copy(res_value, pos('*',res_value) + 1, Length(res_value) - pos('*', res_value));
+      tmp_problem := TProblem.Create(id, title);
+      problems.Add(tmp_problem);
+      //tmp_problem.Free;
+      delete(resultHTTPGet, 1, pos('/', resultHTTPGet));
+    end;
+    Result := 0;
+  end
+  else
+    Result := 1;
+end;
+
+function TResolver.ask_create_problem(title, describe: string; status: integer): integer;
+begin
+  Result := StrToInt(myIdHTTP.Get(TGlobalVariables.server_host + '?oper=___cp&name=' + self.FIO +
+    '&title=' + title + '&describe=' + describe + '&status=' + IntToStr(status)));
+end;
+
+function TResolver.get_id_problem_by_title(title: string): integer;
+var i:integer;
+begin
+Result := 0;
+  for i:= 0 to self.problems.Count - 1 do
+    if self.problems[i].title = title then
+      Result := self.problems[i].id;
+end;
+
+function TResolver.get_name_by_id(id: Integer): String;
+var s: String;
+begin
+  Result := myIdHTTP.Get(TGlobalVariables.server_host + '?oper=_nbid&user_id=' + IntToStr(id));
+end;
+
+end.

@@ -3,7 +3,7 @@ unit resolver;
 interface
 
 uses IdHTTP, SysUtils, Vcl.Forms, System.Generics.Collections, Classes,  Winapi.Windows, problem,
-      global_variables, idFTP, IdFTPCommon;
+      global_variables ;
 
 type TResolver = class
   private
@@ -92,7 +92,9 @@ end;
 procedure TResolver.make_html(problem_id: Integer);
 var chat_file, html_file: TextFile;
     chat_str: String;
-    date, time, sender_name, text, img_link, style_str: String;
+    date, time, sender_name, text, img_link: String;
+    style_str, font_str: String;
+    font_size: integer;
     Bitmap: TBitmap;
 begin
   download_chat(problem_id);
@@ -104,6 +106,8 @@ begin
   Writeln(html_file, '  img.big {cursor: pointer; max-width: 150px;}');
   Writeln(html_file, '  img.big:hover {max-width: none;}');
   Writeln(html_file, '</style>');
+  font_size := 2;
+  font_str := '<font face = "Comic sans MS" size ="' + IntToStr(font_size) + '">';
 
   while not EOF(chat_file) do
   begin
@@ -113,20 +117,22 @@ begin
     time := copy(chat_str, 1, pos('|', chat_str) - 1);
     delete(chat_str, 1, pos('|', chat_str));
     sender_name := get_name_by_id(StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
-    delete(chat_str, 1, pos('|', chat_str));
-    text := copy(chat_str, 1, pos('|', chat_str) - 1);
-    delete(chat_str, 1, pos('|', chat_str));
-    img_link := chat_str;
-
     if sender_name = self.FIO then
       style_str := '<p style="text-align: right;">'
     else
       style_str := '<p style="text-align: left;">';
+    sender_name := '[' + sender_name + ']:';
+    delete(chat_str, 1, pos('|', chat_str));
+    text := copy(chat_str, 1, pos('|', chat_str) - 1);
+    text := '<strong>' + text + '</strong>';
+    delete(chat_str, 1, pos('|', chat_str));
+    img_link := chat_str;
+
     if img_link <> '---' then begin
       img_link := IntToStr(problem_id) + '.media\' + img_link;
       Writeln(html_file, style_str + '<img class="big" src="' + img_link + '"/></p>');
     end;
-    Writeln(html_file, style_str + text + '</p>');
+    Writeln(html_file, style_str + font_str + date + ' ' + time + ' ' + sender_name + text + '</font></p>');
   end;
   CloseFile(chat_file);
   CloseFile(html_file);

@@ -8,7 +8,8 @@ uses
   resolver_form in 'resolver_form.pas' {ResolverForm},
   problem in 'problem.pas',
   create_problem_form in 'create_problem_form.pas' {CreateProblemForm},
-  global_variables in 'global_variables.pas';
+  global_variables in 'global_variables.pas',
+  html_chat_maker in 'html_chat_maker.pas';
 
 {$R *.res}
 

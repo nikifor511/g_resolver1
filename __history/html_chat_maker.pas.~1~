@@ -1,0 +1,12 @@
+unit html_chat_maker;
+
+interface
+
+type THTMLChatMaker= class
+  public
+    class function foo: string;
+end;
+
+implementation
+
+end.
