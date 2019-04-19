@@ -124,14 +124,11 @@ begin
     else
       style_str := '<p style="text-align: left;">';
 
-    Writeln(html_file, '<style>');
-    Writeln(html_file, '<style>>');
-    Writeln(html_file, '<style>>');
-    Writeln(html_file, '<style>>');
-
     if img_link <> '---' then begin
+      Writeln(html_file, '<div id="statya">');
       img_link := IntToStr(problem_id) + '.media\' + img_link;
-      Writeln(html_file, style_str + '<img class="big" src="' + img_link + '"/></p>');
+      Writeln(html_file, style_str + '  <img src="' + img_link + '" width="160" height="120" alt=""></p>');
+      Writeln(html_file, '</div>');
     end;
 
     Writeln(html_file, style_str + text + '</p>');
