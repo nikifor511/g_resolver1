@@ -62,7 +62,7 @@ begin
   ComboBox1.ItemIndex := 0;
   TGlobalVariables.server_host := ComboBox1.Items[ComboBox1.ItemIndex];
 
-  my_resolver := TResolver.Create;
+  //my_resolver := TResolver.Create;
 end;
 
 end.

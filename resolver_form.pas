@@ -71,7 +71,7 @@ var chat_file: TextFile;
     Bitmap: TBitmap;
 begin
   id_problem := pre_form.my_resolver.get_id_problem_by_title(ListBox1.Items[ListBox1.ItemIndex]);
-  pre_form.my_resolver.make_html(id_problem);
+
   //WebBrowser1.Navigate(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');
   Chromium1.Load(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');
 

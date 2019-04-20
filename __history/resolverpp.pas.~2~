@@ -1,0 +1,15 @@
+unit resolverpp;
+
+interface
+
+uses problem, System.Generics.Collections;
+
+type
+  TReoselverPP = class
+    public
+      class var problems: TList<TProblem>;
+  end;
+
+implementation
+
+end.

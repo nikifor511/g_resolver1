@@ -13,7 +13,7 @@ end;
 
 implementation
 
-class function THTMLChatMaker.make_chat(problem_id:integer);
+class function THTMLChatMaker.make_chat(problem_id:integer): boolean;
 var FileList : TStringList;
     i:integer;
     str, str_from, str_to: String;
@@ -26,6 +26,14 @@ var FileList : TStringList;
 begin
   try
     myIdFTP := TIdFTP.Create();
+    myIdFTP := TIdFTP.Create;
+    myIdFTP.Host := 'files.000webhost.com';
+    myIdFTP.Port := 21;
+    myIdFTP.Username := 'indolent-keyword';
+    myIdFTP.Password := 'student511';
+    myIdFTP.Passive := true;
+    myIdFTP.TransferType := ftBinary;
+
     myIdFtp.Connect;
 
     str_from := '/public_html/problem_chat/';
@@ -66,11 +74,11 @@ begin
       delete(chat_str, 1, pos('|', chat_str));
       time := copy(chat_str, 1, pos('|', chat_str) - 1);
       delete(chat_str, 1, pos('|', chat_str));
-      sender_name := get_name_by_id(StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
-      if sender_name = self.FIO then
-      style_str := '<p style="text-align: right;">'
-    else
-      style_str := '<p style="text-align: left;">';
+//      sender_name := get_name_by_id(StrToInt(copy(chat_str, 1, pos('|', chat_str) - 1)));
+//      if sender_name = self.FIO then
+//      style_str := '<p style="text-align: right;">'
+//    else
+//      style_str := '<p style="text-align: left;">';
     sender_name := '[' + sender_name + ']:';
     delete(chat_str, 1, pos('|', chat_str));
     text := copy(chat_str, 1, pos('|', chat_str) - 1);

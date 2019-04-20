@@ -9,7 +9,8 @@ uses
   problem in 'problem.pas',
   create_problem_form in 'create_problem_form.pas' {CreateProblemForm},
   global_variables in 'global_variables.pas',
-  html_chat_maker in 'html_chat_maker.pas';
+  html_chat_maker in 'html_chat_maker.pas',
+  resolverpp in 'resolverpp.pas';
 
 {$R *.res}
 

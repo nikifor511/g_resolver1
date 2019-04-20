@@ -12,7 +12,7 @@ type TProblem = class
 
 implementation
 
-constructor TProblem.Create(id: Integer; title: string);
+constructor TProblem.Create(id: integer; title: string);
 begin
   self.id := id;
   self.title := title;
