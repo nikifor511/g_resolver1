@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, resolver, global_variables;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons,  global_variables;
 
 type
   TPreForm = class(TForm)
@@ -26,7 +26,6 @@ type
 
 var
   PreForm: TPreForm;
-  my_resolver: TResolver;
 
 implementation
 
@@ -61,8 +60,6 @@ begin
   end;
   ComboBox1.ItemIndex := 0;
   TGlobalVariables.server_host := ComboBox1.Items[ComboBox1.ItemIndex];
-
-  //my_resolver := TResolver.Create;
 end;
 
 end.

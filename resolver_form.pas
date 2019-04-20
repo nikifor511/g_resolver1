@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
-  JvExStdCtrls, JvRichEdit, Vcl.OleCtrls, SHDocVw, cefvcl;
+  JvExStdCtrls, JvRichEdit, Vcl.OleCtrls, SHDocVw, cefvcl, resolverpp;
 
 type
   TResolverForm = class(TForm)
@@ -36,7 +36,7 @@ implementation
 
 {$R *.dfm}
 
-uses pre_form, create_problem_form;
+uses create_problem_form;
 
 procedure TResolverForm.Button1Click(Sender: TObject);
 begin
@@ -47,9 +47,9 @@ procedure TResolverForm.upadate_problem_list;
   var i:integer;
 begin
   ListBox1.Clear;
-  Label1.Caption := IntToStr(pre_form.my_resolver.get_list_problems);
-  for i := 0 to pre_form.my_resolver.problems.Count - 1 do
-    ListBox1.Items.Add(pre_form.my_resolver.problems[i].title);
+  Label1.Caption := IntToStr(TResolverPP.get_list_problems);
+  for i := 0 to TResolverPP.problems.Count - 1 do
+    ListBox1.Items.Add(TResolverPP.problems[i].title);
 
 end;
 
@@ -70,7 +70,7 @@ var chat_file: TextFile;
     date, time, sender_name, text, img_link: String;
     Bitmap: TBitmap;
 begin
-  id_problem := pre_form.my_resolver.get_id_problem_by_title(ListBox1.Items[ListBox1.ItemIndex]);
+  id_problem := TResolverPP.get_id_problem_by_title(ListBox1.Items[ListBox1.ItemIndex]);
 
   //WebBrowser1.Navigate(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');
   Chromium1.Load(ExtractFileDir(Application.ExeName) + '\problem_chats\' + IntToStr(id_problem) + '.html');

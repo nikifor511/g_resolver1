@@ -103,7 +103,6 @@
             <Form>LoginForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="resolver.pas"/>
         <DCCReference Include="resolver_form.pas">
             <Form>ResolverForm</Form>
             <FormType>dfm</FormType>

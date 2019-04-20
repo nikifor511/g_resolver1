@@ -5,7 +5,7 @@ interface
 uses problem, System.Generics.Collections, IdHTTP, global_variables, SysUtils;
 
 type
-  TReoselverPP = class
+  TResolverPP = class
     public
       class var problems: TList<TProblem>;
       FIO: String;
@@ -14,17 +14,14 @@ type
       class function ask_create_problem(title, describe: string; status: integer):integer;
       class function get_id_problem_by_title(title: String): integer;
       class function get_name_by_id(id: integer): String;
-
     private
-
-
   end;
 
 implementation
 
 { TReoselverPP }
 
-class function TReoselverPP.ask_create_problem(title, describe: string;
+class function TResolverPP.ask_create_problem(title, describe: string;
   status: integer): integer;
 var myIdHTTP: TIdHTTP;
 begin
@@ -34,7 +31,7 @@ begin
   myIdHTTP.Free;
 end;
 
-class function TReoselverPP.ask_login(fio, pass: String): integer;
+class function TResolverPP.ask_login(fio, pass: String): integer;
 var resultHTTPGet: String;
     myIdHTTP: TIdHTTP;
 begin
@@ -48,12 +45,16 @@ begin
   myIdHTTP.Free;
 end;
 
-class function TReoselverPP.get_id_problem_by_title(title: String): integer;
+class function TResolverPP.get_id_problem_by_title(title: String): integer;
+var i:integer;
 begin
-
+  Result := 0;
+  for i:= 0 to self.problems.Count - 1 do
+    if self.problems[i].title = title then
+      Result := self.problems[i].id;
 end;
 
-class function TReoselverPP.get_list_problems: integer;
+class function TResolverPP.get_list_problems: integer;
 var resultHTTPGet, res_value, title: String;
     id :integer;
     tmp_problem: TProblem;
@@ -79,7 +80,7 @@ begin
   myIdHTTP.Free;
 end;
 
-class function TReoselverPP.get_name_by_id(id: integer): String;
+class function TResolverPP.get_name_by_id(id: integer): String;
 var myIdHTTP: TIdHTTP;
 begin
   myIdHTTP := TIdHTTP.Create();

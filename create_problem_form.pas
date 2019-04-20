@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, resolverpp;
 
 type
   TCreateProblemForm = class(TForm)
@@ -30,7 +30,7 @@ implementation
 
 {$R *.dfm}
 
-uses pre_form, resolver_form;
+uses resolver_form;
 
 procedure TCreateProblemForm.Button1Click(Sender: TObject);
 var res, status: integer;
@@ -44,7 +44,7 @@ begin
     status := 11
   else
     status := 1;
-  res := pre_form.my_resolver.ask_create_problem(Edit1.Text, Memo1.Lines.CommaText, status);
+  res := TResolverPP.ask_create_problem(Edit1.Text, Memo1.Lines.CommaText, status);
   if res = 0 then
   begin
     ShowMessage('Problem successfully created!');

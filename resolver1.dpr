@@ -4,7 +4,6 @@ uses
   Vcl.Forms,
   pre_form in 'pre_form.pas' {PreForm},
   login_form in 'login_form.pas' {LoginForm},
-  resolver in 'resolver.pas',
   resolver_form in 'resolver_form.pas' {ResolverForm},
   problem in 'problem.pas',
   create_problem_form in 'create_problem_form.pas' {CreateProblemForm},

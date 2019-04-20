@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, resolverpp;
 
 type
   TLoginForm = class(TForm)
@@ -29,12 +29,12 @@ implementation
 
 {$R *.dfm}
 
-uses pre_form, resolver_form;
+uses resolver_form;
 
 procedure TLoginForm.Button1Click(Sender: TObject);
 var res: integer;
 begin
-  res := pre_form.my_resolver.ask_login(Edit1.Text, Edit2.Text);
+  res := TResolverPP.ask_login(Edit1.Text, Edit2.Text);
   if res = 0 then begin
     LoginForm.Close;
     ResolverForm.Show;
