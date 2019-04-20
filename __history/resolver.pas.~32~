@@ -3,7 +3,7 @@ unit resolver;
 interface
 
 uses IdHTTP, SysUtils, Vcl.Forms, System.Generics.Collections, Classes,  Winapi.Windows, problem,
-      global_variables ;
+      global_variables, idFTP, IdFTPCommon;
 
 type TResolver = class
   private
@@ -103,17 +103,11 @@ begin
   Reset(chat_file);
   Rewrite(html_file);
   Writeln(html_file, '<style>');
-<<<<<<< HEAD
-  Writeln(html_file, '  img.big {cursor: pointer; max-width: 320px;}');
-  Writeln(html_file, '  img.big:hover {max-width: none;}');
-  Writeln(html_file, '</style>');
-=======
   Writeln(html_file, '  img.big {cursor: pointer; max-width: 150px;}');
   Writeln(html_file, '  img.big:hover {max-width: none;}');
   Writeln(html_file, '</style>');
   font_size := 2;
   font_str := '<font face = "Comic sans MS" size ="' + IntToStr(font_size) + '">';
->>>>>>> 6e940b60748f5def97c9248ed668f325c5b1f273
 
   while not EOF(chat_file) do
   begin
@@ -136,17 +130,9 @@ begin
 
     if img_link <> '---' then begin
       img_link := IntToStr(problem_id) + '.media\' + img_link;
-<<<<<<< HEAD
-      Writeln(html_file, style_str + '<img class="big" src="' + img_link + '"></p>');
-    end;
-
-    Writeln(html_file, style_str + date + ' ' + time + ' ' + '[' + sender_name + ']:' + text + '</p>');
-
-=======
       Writeln(html_file, style_str + '<img class="big" src="' + img_link + '"/></p>');
     end;
     Writeln(html_file, style_str + font_str + date + ' ' + time + ' ' + sender_name + text + '</font></p>');
->>>>>>> 6e940b60748f5def97c9248ed668f325c5b1f273
   end;
   CloseFile(chat_file);
   CloseFile(html_file);
